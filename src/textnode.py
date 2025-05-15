@@ -1,5 +1,5 @@
 from enum import Enum 
-from htmlnode import HTMLNode, LeafNode, ParentNode
+from htmlnode import LeafNode
 
 class TextType(Enum):
     TEXT = "Text"
@@ -41,9 +41,6 @@ class TextNode():
             return LeafNode("a", self.text, {"href" : self.url})
         elif self.text_type == TextType.IMAGE:
             return LeafNode("img", "", {"src" : self.url, "alt" : self.text})
-        
-
-
     
     
 
