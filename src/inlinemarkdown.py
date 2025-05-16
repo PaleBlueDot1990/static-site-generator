@@ -1,7 +1,7 @@
 import re 
 from textnode import TextNode, TextType
 
-class InlineMarkdownNodeSplitter():
+class InlineMarkdown():
     def split_nodes_delimiter(self, old_nodes, delimiter, text_type):
         new_nodes = []
 
