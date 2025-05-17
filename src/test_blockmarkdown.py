@@ -468,6 +468,31 @@ with some code snippets
         self.assertNotEqual(type10, BlockType.ORDERED_LIST)
 
 
+    def test_markdown_to_html_node_1(self):
+        md = """
+# **This is heading 1**
+
+_This is a paragraph
+with a second line
+and with a third line_
+
+> This is a `quote`
+
+1. **Ordered** List _Item 1_
+2. **Ordered** List _Item 2_
+3. **Ordered** List _Item 3_
+
+- **Unordered** List _Item 1_
+- **Unordered** List _Item 2_
+- **Unordered** List _Item 3_
+"""
+
+        node = BlockMarkDown().markdown_to_html_node(md)
+        html = node.to_html()
+        self.assertEqual(
+            html,
+            "<div><h1><b>This is heading 1</b></h1><p><i>This is a paragraph with a second line and with a third line</i></p><blockquote> This is a <code>quote</code></blockquote><ol><li><b>Ordered</b> List <i>Item 1</i></li><li><b>Ordered</b> List <i>Item 2</i></li><li><b>Ordered</b> List <i>Item 3</i></li></ol><ul><li><b>Unordered</b> List <i>Item 1</i></li><li><b>Unordered</b> List <i>Item 2</i></li><li><b>Unordered</b> List <i>Item 3</i></li></ul></div>",
+        )
 
 
 
