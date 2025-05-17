@@ -8,34 +8,21 @@ def main():
     print("Welcome to Static Site Generator!")
 
     md = """
-# This is heading 1
+# **This is heading 1**
 
-This is a paragraph
+_This is a paragraph
 with a second line
-and with a third line
+and with a third line_
 
-## This is heading 2
+> This is a `quote`
 
-> This is a quote
+1. **Ordered** List _Item 1_
+2. **Ordered** List _Item 2_
+3. **Ordered** List _Item 3_
 
-### This is heading 3
-
-```
-This is a code block
-with some code snippets
-```
-
-#### This is heading 4
-
-1. Ordered List Item 1
-2. Ordered List Item 2
-3. Ordered List Item 3
-
-##### This is heading 5
-
-- Unrdered List Item 1
-- Unordered List Item 2
-- Unordered List Item 3
+- **Unordered** List _Item 1_
+- **Unordered** List _Item 2_
+- **Unordered** List _Item 3_
 """
 
     node = BlockMarkDown().markdown_to_html_node(md)

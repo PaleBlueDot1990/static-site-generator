@@ -114,10 +114,8 @@ class BlockMarkDown():
         block = " ".join(parts)
 
         text_nodes = InlineMarkdown().text_to_textnodes(block)
-        if len(text_nodes) == 1:
-            return LeafNode("div", block, None)
-
         p_node = ParentNode("p", [], None)
+
         for text_node in text_nodes:
             if text_node.text_type == TextType.TEXT:
                 p_node.children.append(LeafNode(None, text_node.text, None))
@@ -131,6 +129,7 @@ class BlockMarkDown():
                 p_node.children.append(LeafNode("img", "", {"src" : text_node.url, "alt" : text_node.text}))
             elif text_node.text_type == TextType.LINK:
                 p_node.children.append(LeafNode("a", text_node.text, {"href" : text_node.url}))
+
         return p_node 
     
 
@@ -140,10 +139,8 @@ class BlockMarkDown():
         h_text = " ".join(parts)
 
         text_nodes = InlineMarkdown().text_to_textnodes(h_text)
-        if len(text_nodes) == 1:
-            return LeafNode(h_tag, h_text, None)
-        
         h_node = ParentNode(h_tag, [], None)
+
         for text_node in text_nodes:
             if text_node.text_type == TextType.TEXT:
                 h_node.children.append(LeafNode(None, text_node.text, None))
@@ -157,6 +154,7 @@ class BlockMarkDown():
                 h_node.children.append(LeafNode("img", "", {"src" : text_node.url, "alt" : text_node.text}))
             elif text_node.text_type == TextType.LINK:
                 h_node.children.append(LeafNode("a", text_node.text, {"href" : text_node.url}))
+
         return h_node
     
 
@@ -166,10 +164,8 @@ class BlockMarkDown():
         q_text = " ".join(parts)
 
         text_nodes = InlineMarkdown().text_to_textnodes(q_text)
-        if len(text_nodes) == 1:
-            return LeafNode(q_tag, q_text, None)
-        
         q_node = ParentNode(q_tag, [], None)
+
         for text_node in text_nodes:
             if text_node.text_type == TextType.TEXT:
                 q_node.children.append(LeafNode(None, text_node.text, None))
@@ -183,6 +179,7 @@ class BlockMarkDown():
                 q_node.children.append(LeafNode("img", "", {"src" : text_node.url, "alt" : text_node.text}))
             elif text_node.text_type == TextType.LINK:
                 q_node.children.append(LeafNode("a", text_node.text, {"href" : text_node.url}))
+
         return q_node
     
 
@@ -193,10 +190,8 @@ class BlockMarkDown():
         for list_item in list_items:
             item_text = list_item[2:]
             text_nodes = InlineMarkdown().text_to_textnodes(item_text)
-            if len(text_nodes) == 1:
-                ul_node.children.append(LeafNode("li", item_text, None))
-            
             li_node = ParentNode("li", [], None)
+
             for text_node in text_nodes:
                 if text_node.text_type == TextType.TEXT:
                     li_node.children.append(LeafNode(None, text_node.text, None))
@@ -210,6 +205,7 @@ class BlockMarkDown():
                     li_node.children.append(LeafNode("img", "", {"src" : text_node.url, "alt" : text_node.text}))
                 elif text_node.text_type == TextType.LINK:
                     li_node.children.append(LeafNode("a", text_node.text, {"href" : text_node.url}))
+
             ul_node.children.append(li_node)
         
         return ul_node
@@ -222,10 +218,8 @@ class BlockMarkDown():
         for list_item in list_items:
             item_text = self.get_ordered_item_text(list_item)
             text_nodes = InlineMarkdown().text_to_textnodes(item_text)
-            if len(text_nodes) == 1:
-                ol_node.children.append(LeafNode("li", item_text, None))
-            
             li_node = ParentNode("li", [], None)
+
             for text_node in text_nodes:
                 if text_node.text_type == TextType.TEXT:
                     li_node.children.append(LeafNode(None, text_node.text, None))
@@ -239,6 +233,7 @@ class BlockMarkDown():
                     li_node.children.append(LeafNode("img", "", {"src" : text_node.url, "alt" : text_node.text}))
                 elif text_node.text_type == TextType.LINK:
                     li_node.children.append(LeafNode("a", text_node.text, {"href" : text_node.url}))
+
             ol_node.children.append(li_node)
         
         return ol_node
@@ -265,8 +260,7 @@ class BlockMarkDown():
 
     def get_ordered_item_text(self, block):
         text = block.split('.', 1)[1].strip()
-        return text 
-        
+        return text     
 
     
 
