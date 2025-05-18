@@ -159,7 +159,7 @@ class BlockMarkDown():
     
 
     def get_quote_node(self, block):
-        q_tag, q_text = "blockquote", block[1:]
+        q_tag, q_text = "blockquote", block[2:]
         parts = q_text.split("\n")
         q_text = " ".join(parts)
 

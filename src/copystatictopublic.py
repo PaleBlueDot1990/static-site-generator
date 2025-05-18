@@ -12,7 +12,7 @@ class CopyStaticToPublic():
         for content in contents:
             new_path = os.path.join(path, content)
             self.delete_directory(new_path)
-        print(f"Deleting direcotry : {path}")
+        print(f"Deleting directory : {path}")
         os.rmdir(path)
         
     
