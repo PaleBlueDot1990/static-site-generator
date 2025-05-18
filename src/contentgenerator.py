@@ -1,7 +1,7 @@
 import os
 from blockmarkdown import BlockMarkDown
 
-class PageGenerator():
+class ContentGenerator():
     def extract_title(self, markdown):
         lines = markdown.split("\n")
 
@@ -12,10 +12,8 @@ class PageGenerator():
         
         raise ValueError("Heading not found in the markdown file")
     
+    
     def generate_page(self, src_file_path, template_path, dest_file_path):
-        print("\n-----------------------------------------------")
-        print(f"Generating page from {src_file_path} to {dest_file_path}")
-
         with open(src_file_path, 'r', encoding = 'utf-8') as file:
             markdown = file.read()
         
@@ -29,9 +27,6 @@ class PageGenerator():
 
         with open(dest_file_path, 'w', encoding = 'utf-8') as file:
             file.write(page)
-        
-        print(f"Page generated successfully at {dest_file_path}")
-        print("\n-----------------------------------------------")
     
 
     def generate_pages_recursive(self, src_path, template_path, dest_path):
@@ -50,7 +45,13 @@ class PageGenerator():
                 new_dest_path = os.path.join(dest_path, content.split('.')[0] + ".html")
 
             self.generate_pages_recursive(new_src_path, template_path, new_dest_path)
-            
+    
+
+    def generate_content(self, src_path, template_path, dest_path):
+        print(f"\nTransforming markdown files of directory: \'{src_path}\' to html files in directory: \'{dest_path}\'.")
+        self.generate_pages_recursive(src_path, template_path, dest_path)
+        print(f"Finished transforming. You can access all the files on http://localhost:8888/\n")
+
 
 
 

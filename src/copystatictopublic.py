@@ -4,7 +4,6 @@ import shutil
 class CopyStaticToPublic():
     def delete_directory(self, path):
         if os.path.isfile(path):
-            print(f"Deleting file : {path}")
             os.remove(path)
             return 
 
@@ -12,13 +11,11 @@ class CopyStaticToPublic():
         for content in contents:
             new_path = os.path.join(path, content)
             self.delete_directory(new_path)
-        print(f"Deleting directory : {path}")
         os.rmdir(path)
         
     
     def copy_directory(self, src_path, des_path):
         if os.path.isfile(src_path):
-            print(f"Copying file : {src_path} into file : {des_path}")
             shutil.copy(src_path, des_path)
             return
         
@@ -28,16 +25,21 @@ class CopyStaticToPublic():
             new_des_path = os.path.join(des_path, content)
 
             if os.path.isdir(new_src_path):
-                print(f"Creating directory : {new_des_path}")
                 os.mkdir(new_des_path)
                 
             self.copy_directory(new_src_path, new_des_path)
 
 
     def delete_and_copy(self, src_path, des_path):
+        print(f"\nDeleting all subdirectories and files from directory: \'{des_path}\' recursively.")
         self.delete_directory(des_path)
         os.mkdir(des_path)
+        print(f"Finished deleting.")
+
+        print(f"Copying static contents of directory: \'{src_path}\' in directory: \'{des_path}\'.")
         self.copy_directory(src_path, des_path)
+        print(f"Finished copying.\n")
+
     
 
 
