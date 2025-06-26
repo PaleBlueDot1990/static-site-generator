@@ -25,8 +25,8 @@ class ContentGenerator():
         
         page = page_template.replace("{{ Title }}", page_title)
         page = page.replace("{{ Content }}", page_content)
-        page = page.replace("href=\"/", f"href=\"{base_path}")
-        page = page.replace("src=\"/", f"src=\"{base_path}")
+        page = page.replace("href=\"/", f"href=\"{base_path}docs/")
+        page = page.replace("src=\"/", f"src=\"{base_path}docs/")
 
         with open(dest_file_path, 'w', encoding = 'utf-8') as file:
             file.write(page)
